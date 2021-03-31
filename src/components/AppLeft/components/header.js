@@ -4,6 +4,15 @@ import { MenuItem, FormControl, Select, } from '@material-ui/core';
 function Header() {
   const[countries, setCountries] = useState([]);
   const[country, setCountry] = useState('worldwide');
+  const[countryInfo, setCountryInfo] = useState({});
+  
+  useEffect(()=>{
+    fetch("https://disease.sh/v3/covid-19/all")
+    .then((response)=> response.json())
+    .then((data) =>{
+      setCountryInfo(data);
+    })
+  }, []);
 
   useEffect(()=>{
     const getCountriesData = async () =>{
@@ -18,11 +27,20 @@ function Header() {
       })
     }
     getCountriesData();
-  }, [countries]);
+  }, []);
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
     setCountry(countryCode);
+    const url = countryCode === 'worldwide'
+      ? 'https://disease.sh/v3/covid-19/all'
+      : `https://disease.sh/v3/covid-19/${countryCode}`;
+    await fetch(url)
+    .then(response => response.json())
+    .then((data)=>{
+      setCountry(countryCode);
+      setCountryInfo(data);
+    })
   }
 
   return (

@@ -8,9 +8,9 @@ function AppLeft() {
     <div className="app__left">
       <Header />
       <div className="app__stats">
-        <InfoBox title="Coronavirus Cases" total={123} cases={123}></InfoBox>
-        <InfoBox title="Recovered" total={123} cases={123}></InfoBox>
-        <InfoBox title="Deaths" total={123} cases={123}></InfoBox>
+        <InfoBox title="Coronavirus Cases" total={countryInfo.todayCases} cases={countryInfo.cases}></InfoBox>
+        <InfoBox title="Recovered" total={countryInfo.todayRecovered} cases={countryInfo.recovered}></InfoBox>
+        <InfoBox title="Deaths" total={countryInfo.todayDeaths} cases={countryInfo.deaths}></InfoBox>
       </div>
       {/*Map*/}
       <Map />
