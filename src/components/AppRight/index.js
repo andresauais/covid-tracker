@@ -7,15 +7,15 @@ import Table from './components/table';
 import LineGraph from './components/LineGraph'
 
 function AppRight() {
-  const {tableData} = useContext(CountryContext);
+  const {tableData, casesType} = useContext(CountryContext);
 
   return (
-    <Card>
+    <Card className="app__right">
       <CardContent>
         <h3>Live Cases by Country</h3>
         <Table countries={tableData} className="table"/>
-        <h3>Worldwide new cases</h3>
-        <LineGraph />
+        <h3 className="app__graphTitle">Worldwide new {casesType}</h3>
+        <LineGraph className="app__graph" casesType={casesType}/>
       </CardContent>
     </Card>
   )

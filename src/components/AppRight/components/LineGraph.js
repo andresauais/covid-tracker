@@ -1,7 +1,8 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useContext} from 'react'
 import { Line } from 'react-chartjs-2'
 import { buildChartData } from '../../../utils/buildChartData'
 import numeral from 'numeral';
+import {CountryContext} from '../../../context/country-context'
 
 const options ={
   legend: {
@@ -48,24 +49,23 @@ const options ={
   },
 };
 
-function LineGraph({caseType = 'cases'}) {
+function LineGraph({casesType, className}) {
 
   const [data, setData] = useState({})
-
   useEffect(() => {
     const fetchData = async () => {
-      await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=120')
+      await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=100')
       .then(response=> response.json())
       .then(data =>{
-        const chartData = buildChartData(data, caseType);
+        const chartData = buildChartData(data, casesType);
         setData(chartData);
       })
     }
     fetchData();
-  }, [])
+  }, [casesType])
 
   return (
-    <div>
+    <div className={className}>
       {data?.length > 0 && (
         <Line
           data={{

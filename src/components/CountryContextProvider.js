@@ -8,6 +8,10 @@ const CountryContextProvider = ({children}) =>{
   const[country, setCountry] = useState('worldwide');
   const[countryInfo, setCountryInfo] = useState({});
   const[tableData, setTableData] = useState([]);
+  const[mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796});
+  const[mapZoom, setMapZoom] = useState(3);
+  const[mapCountries, setMapCountries] = useState([]);
+  const[casesType, setCasesType] = useState('cases');
 
   useEffect(()=>{
     fetch("https://disease.sh/v3/covid-19/all")
@@ -26,9 +30,9 @@ const CountryContextProvider = ({children}) =>{
           name: country.country,
           value: country.countryInfo.iso2
         }));
-
-        const sortedData = sortData(data);
+        let sortedData = sortData(data);
         setTableData(sortedData);
+        setMapCountries(data);
         setCountries(countries);
       })
     }
@@ -46,6 +50,10 @@ const CountryContextProvider = ({children}) =>{
     .then((data)=>{
       setCountry(countryCode);
       setCountryInfo(data);
+      countryCode === "worldwide"
+          ? setMapCenter([34.80746, -40.4796])
+          : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+      setMapZoom(4);
     })
   }
   return(
@@ -55,6 +63,11 @@ const CountryContextProvider = ({children}) =>{
       countryInfo,
       onCountryChange,
       tableData,
+      mapZoom,
+      mapCenter,
+      mapCountries,
+      casesType,
+      setCasesType
     }}>{children}</CountryContext.Provider>
   )
 }

@@ -5,6 +5,10 @@ export const CountryContext = createContext(
     country: 'worldwide',
     countries: [],
     countryInfo: [],
-    tableData: []
+    tableData: [],
+    mapCenter: {},
+    mapZoom: 3,
+    mapCountries: [],
+    casesType: 'cases'
   }
 );
