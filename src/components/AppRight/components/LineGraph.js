@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2'
 import { buildChartData } from '../../../utils/buildChartData'
 import numeral from 'numeral';
 import {CountryContext} from '../../../context/country-context'
+import {casesTypeColors} from '../../../utils/colors'
 
 const options ={
   legend: {
@@ -63,7 +64,7 @@ function LineGraph({casesType, className}) {
     }
     fetchData();
   }, [casesType])
-
+  let lineColor = (casesType == "cases") ? "#CC1034" : "green";
   return (
     <div className={className}>
       {data?.length > 0 && (
@@ -71,8 +72,8 @@ function LineGraph({casesType, className}) {
           data={{
             datasets: [
               {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
+                backgroundColor: casesTypeColors[casesType].table.fillColor,
+                borderColor: casesTypeColors[casesType].table.color,
                 data: data,
               },
             ],

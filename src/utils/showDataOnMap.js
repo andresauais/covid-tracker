@@ -1,21 +1,7 @@
 import React from 'react'
 import numeral from 'numeral'
 import {Circle, Popup} from 'react-leaflet'
-
-const casesTypeColors = {
-  cases: {
-    option: { color:"#cc1034", fillColor: "#cc1034" },
-    multiplier: 25000,
-  },
-  recovered: {
-    option: { color:"#7dd71d", fillColor: "#7dd71d" },
-    multiplier: 25000,
-  },
-  deaths: {
-    option: { color:"#ff6c47", fillColor: "#ff6c47" },
-    multiplier: 25000,
-  },
-};
+import {casesTypeColors} from './colors';
 
 export const showDataOnMap = (data, casesType = 'cases') => (
   data.map((country) => (

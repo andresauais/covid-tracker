@@ -18,7 +18,7 @@ function AppLeft() {
         <InfoBox
           active={casesType === 'cases'}
           onClick={e => setCasesType('cases')}
-          title="Coronavirus Cases"
+          title="Cases"
           total={prettyPrintStat(countryInfo.cases)}
           cases={prettyPrintStat(countryInfo.todayCases)}></InfoBox>
         <InfoBox
