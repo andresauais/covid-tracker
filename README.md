@@ -37,8 +37,8 @@ npm run start
 ## Build with 🛠️
 
 * [React](https://es.reactjs.org/) - Web framework
-* [Leaflet] (https://leafletjs.com/) - Map framework
-* [Material-UI] (https://material-ui.com/) - Components stylying
+* [Leaflet](https://leafletjs.com/) - Map framework
+* [Material-UI](https://material-ui.com/) - Components stylying
 
 ## Authors ✒️
 
